@@ -104,3 +104,71 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+
+const idFilmu = location.hash.slice(1);
+
+const film = filmy.find((f) => { 
+	return f.id === idFilmu 
+}) //vrátí mi to jeden objekt filmu (pokud je jen jeden parametr, tak mohu smazat závorky kolem..  pokud složené závorky, musí se dodat return)
+
+/*
+const film = filmy.find(f =>f.id === idFilmu)
+*/ 
+//takhle je jednodušší verze fce
+
+document.body.innerHTML += film.nazev
+
+const filmObrazek = document.querySelector('#film-obrazek');
+const filmNazev = document.querySelector('#film-nazev');
+const filmPopis = document.querySelector('#film-popis');
+const filmPremiera = document.querySelector('#premiera');
+
+
+
+filmObrazek.src = film.plakat.url;
+filmObrazek.width = film.plakat.sirka;
+filmObrazek.height = film.plakat.vyska;
+
+filmNazev.textContent = film.nazev;
+filmPopis.textContent = film.popis;
+
+/*
+1 den
+2, 3, 4 dny
+5+ dní
+*/
+const sklonovani = (pocet, slovo1, slovo2, slovo3) => {
+	if (pocet === 1) {
+		return slovo1;
+	} 
+	
+	if (pocet >= 2 && pocet <= 4) { //lze použít i else if
+		return slovo2;
+	} else {
+		return slovo3;
+	}
+}
+//zavolam jako sklonovani(25, 'den', 'dny', 'dní');
+//nebo sklonovani(13, 'slepice', 'slepice', 'slepic!)  ..hodím číslo a podle čísla hodí slovo které tam vložíme
+
+const dnyOdPremiery = dayjs(film.premiera).diff( dayjs() , 'days'); //dayjs() vygeneruje dnešní datum
+
+/*
+let predlozka;
+if (dnyOdPremiery < 0) {
+	predlozka = 'před';
+} else {
+	předlozka = 'za';
+}
+	*/
+const predlozka = dnyOdPremiery < 0 ? 'bylo před' : 'je za'; //toto je lepší varianta toho nad tím
+
+
+filmPremiera.innerHTML = `
+Premiéra <strong>${dayjs(film.premiera).format('D. M. YYYY')}</strong>, 
+což ${predlozka} 
+${Math.abs(dnyOdPremiery)} 
+${sklonovani(Math.abs(dnyOdPremiery), 'den', 'dny', 'dní')}
+.`;
+

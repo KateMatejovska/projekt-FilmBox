@@ -104,3 +104,32 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+let seznam = ''; //sečteme všechny filmy v proměnné, aby nemusel vypisovat rovnou 8x do stránky (nákladné), překreslí stránku jen jednou
+const seznamFilmu = document.querySelector('#seznam-filmu');
+
+//tady si vypíšeme vše do proměnné
+filmy.forEach(film => {
+	
+	seznam += `
+		<div class="col">
+			<div class="card">
+				<img
+					src="${film.plakat.url}"
+					width="${film.plakat.sirka}"
+					height="${film.plakat.vyska}"
+					class="card-img-top"
+					alt="plakát"
+				/>
+				<div class="card-body">
+					<h5 class="card-title">${film.nazev}</h5>
+					<p class="card-text">${film.ochutnavka}</p>
+					<a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a>
+				</div>
+			</div>
+		</div>
+	`;
+});
+
+seznamFilmu.innerHTML = seznam; //teprve přídám do stránky
+

@@ -19,6 +19,7 @@
 		/>
 		<script src="mdb5-standard-UI-kit-free-6.0.1/js/mdb.min.js" defer></script>
 		<link rel="stylesheet" href="styly.css" />
+		<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 		<script src="spolecne.js" type="module"></script>
 		<script src="film.js" type="module"></script>
 	</head>
@@ -61,12 +62,13 @@
 							class="img-fluid rounded-start"
 							width="663"
 							height="909"
+							id="film-obrazek"
 						/>
 					</div>
 					<div class="col-md-7">
 						<div class="card-body">
-							<h5 class="card-title">Sem patří název filmu</h5>
-							<p class="card-text">Tady bude dluhý popis filmu.</p>
+							<h5 class="card-title" id="film-nazev">Sem patří název filmu</h5>
+							<p class="card-text" id="film-popis">Tady bude dluhý popis filmu.</p>
 							<p class="card-text">
 								<small class="text-muted" id="premiera"
 									>Premiéra <strong>24. prosince 2022</strong>, což je za 24
